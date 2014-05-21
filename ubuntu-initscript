@@ -1,0 +1,10 @@
+version "1.0"
+author "Daniel Leaberry"
+
+start on filesystem and net-device-up IFACE!=lo
+stop on stopping network-interface INTERFACE=eth0
+stop on starting shutdown
+
+respawn
+console output
+exec /usr/bin/python /var/www/html/AlarmServer-smartthings/alarmserver.py -c /var/www/html/AlarmServer-smartthings/alarmserver.cfg
